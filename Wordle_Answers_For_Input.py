@@ -1,5 +1,4 @@
 import re
-import PySimpleGUI
 
 #Scripts displays the possible 5 letter answers for given regex pattern
 
@@ -16,4 +15,4 @@ def Display_Possible_Answers(pattern):
         print(answer)
     
 
-Display_Possible_Answers('ho...')
+#Display_Possible_Answers('ho...')
