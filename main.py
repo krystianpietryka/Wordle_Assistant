@@ -34,15 +34,24 @@ def Main():
         # Call Wordle_Answers_For_Input.Display_Possible_Answers for entered pattern and excluded letters
         # Display in new popup window
         elif event == 'Display Answers' and not window2:
-            print(values['excluded'])
             result = Wordle_Answers_For_Input.Display_Possible_Answers(values['pattern'], values['excluded'])
+            # Length Check
             if len(values['pattern']) != 5:
                 window2 = Answers()
                 window2['-OUTPUT-'].update('Pattern must be 5 letters!')
             else:
-                result = ''.join([str(i) for i in result])
+                # Valid Symbol Check
+                valid_symbol_flag = 1
+                for letter in values['pattern']:
+                    if letter not in Wordle_Answers_For_Input.allowed_symbols:
+                        valid_symbol_flag = 0
+                        break
                 window2 = Answers()
-                window2['-OUTPUT-'].update(result) # Strip the results o
+                if valid_symbol_flag == 1:
+                    result = ''.join([str(i) for i in result])
+                    window2['-OUTPUT-'].update(result)
+                else:
+                    window2['-OUTPUT-'].update('Invalid Symbol Input!')
     window.close()
 
 if __name__ == '__main__':
