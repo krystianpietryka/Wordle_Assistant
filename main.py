@@ -7,18 +7,31 @@ sg.theme('DarkGreen')
 
 # Main Window
 def Intro():
-    layout = [[sg.Text('Welcome to Wordle_Assistant!', size=(40, 1))],
+    layout = [[sg.Text('Welcome to Wordle Assistant!', size=(40, 1))],
               [sg.Text('Pattern:   '), sg.InputText('', size=(40, 1), key = 'pattern', enable_events=True)],
               [sg.Text('Exclude: '), sg.InputText('', size=(40, 1), key = 'excluded', enable_events=True)],
               [sg.Button('Display Answers') ,sg.Button('Exit'), sg.Button('Help')]]
-    return sg.Window('WordleAssistant', layout, location=(600, 300), finalize=True)
+    return sg.Window('WordleAssistant', layout, finalize=True)
 
 
 # Window for displaying answers, will probably add scrolling in the future
 def Answers():
     layout = [[sg.Text(k='-OUTPUT-', size=(20, 50))]]
-    return sg.Window('Possible Answers', layout, location=(600, 0), finalize=True)
+    return sg.Window('Possible Answers', layout, location=(550, 0), finalize=True)
 
+def Help():
+    layout = [[sg.Text(""" Hi! Thank you for using Wordle Assistant!
+
+    1) Pattern Input: Input known/unknown letters pattern here.
+    Accepts letters of the english alphabet, and the
+    "." symbol, used for matching any letter. Input must be 5 symbols long.
+
+    2) Excluded Input: Used for excluding words containing any of the input letters from the answer.
+    Accepts letters of the english alphabet. 
+    Letters do not need to be separated with spaces, for ex. "yrdau" will suffice.
+    
+    """)]]
+    return sg.Window('Help Page', layout,  finalize=True)
 
 # GUI Loop
 def Main():
@@ -53,6 +66,8 @@ def Main():
                     window2['-OUTPUT-'].update(result)
                 else:
                     window2['-OUTPUT-'].update('Invalid Symbol Input!')
+        elif event == 'Help' and not window2:
+            window2 = Help()
     window.close()
 
 if __name__ == '__main__':
