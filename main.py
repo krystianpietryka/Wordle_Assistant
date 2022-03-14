@@ -46,6 +46,7 @@ def Main():
                     if letter not in Wordle_Answers_For_Input.allowed_symbols:
                         valid_symbol_flag = 0
                         break
+                # Display Results based on valid symbol flag
                 window2 = Answers()
                 if valid_symbol_flag == 1:
                     result = ''.join([str(i) for i in result])
