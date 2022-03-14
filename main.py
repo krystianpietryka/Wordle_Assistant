@@ -8,17 +8,15 @@ sg.theme('DarkGreen')
 # First window
 def Intro():
     layout = [[sg.Text('Welcome to Wordle_Assistant', size=(40, 1))],
-              [sg.Text('Please Input Your Pattern:', size=(40, 1), key = 'pattern', enable_events=True)],
-              [sg.InputText(size=(40, 1))],
+              [sg.InputText('', size=(40, 1), key = 'pattern', enable_events=True)],
+              [sg.InputText('', size=(40, 1), key = 'excluded', enable_events=True)],
               [sg.Button('Display Answers')] ,[sg.Button('Exit')]]
     return sg.Window('DiceCalculator', layout, location=(600, 300), finalize=True)
 
     # First window
 def Answers():
-    layout = [[sg.Text('Possible Answers:', size=(40, 1))],
-              [sg.Text(k='-OUTPUT-', size=(40, 1))],
-              [sg.Button('Exit')]]
-    return sg.Window('DiceCalculator', layout, location=(600, 300), finalize=True)
+    layout = [[sg.Text(k='-OUTPUT-', size=(20, 50))]]
+    return sg.Window('Possible Answers', layout, location=(600, 0), finalize=True)
 
 
 # GUI Loop
@@ -33,9 +31,10 @@ def Main():
             elif window == window1:     # if closing win 1, exit program
                 break
         elif event == 'Display Answers' and not window2:
-            result = Wordle_Answers_For_Input.Display_Possible_Answers(values['pattern'])
+            result = Wordle_Answers_For_Input.Display_Possible_Answers(values['pattern'], values['excluded'])
+            result = ''.join([str(i) for i in result])
             window2 = Answers()
-            window['-OUTPUT-'].update(result)
+            window2['-OUTPUT-'].update(result.strip())
 
     window.close()
 
