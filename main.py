@@ -7,10 +7,10 @@ sg.theme('DarkGreen')
 
 # Main Window
 def Intro():
-    layout = [[sg.Text('Welcome to Wordle_Assistant', size=(40, 1))],
-              [sg.InputText('', size=(40, 1), key = 'pattern', enable_events=True)],
-              [sg.InputText('', size=(40, 1), key = 'excluded', enable_events=True)],
-              [sg.Button('Display Answers')] ,[sg.Button('Exit')]]
+    layout = [[sg.Text('Welcome to Wordle_Assistant!', size=(40, 1))],
+              [sg.Text('Pattern:   '), sg.InputText('', size=(40, 1), key = 'pattern', enable_events=True)],
+              [sg.Text('Exclude: '), sg.InputText('', size=(40, 1), key = 'excluded', enable_events=True)],
+              [sg.Button('Display Answers') ,sg.Button('Exit'), sg.Button('Help')]]
     return sg.Window('WordleAssistant', layout, location=(600, 300), finalize=True)
 
 
@@ -36,9 +36,13 @@ def Main():
         elif event == 'Display Answers' and not window2:
             print(values['excluded'])
             result = Wordle_Answers_For_Input.Display_Possible_Answers(values['pattern'], values['excluded'])
-            result = ''.join([str(i) for i in result])
-            window2 = Answers()
-            window2['-OUTPUT-'].update(result) # Strip the results o
+            if len(values['pattern']) != 5:
+                window2 = Answers()
+                window2['-OUTPUT-'].update('Pattern must be 5 letters!')
+            else:
+                result = ''.join([str(i) for i in result])
+                window2 = Answers()
+                window2['-OUTPUT-'].update(result) # Strip the results o
     window.close()
 
 if __name__ == '__main__':

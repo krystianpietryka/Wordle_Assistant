@@ -4,8 +4,8 @@ import re
 def Display_Possible_Answers(pattern, excluded_letters_input):
     excluded_letters = []
     for letter in excluded_letters_input:
-        excluded_letters.append(letter)
-    print(excluded_letters)
+        if letter!= ' ':
+            excluded_letters.append(letter)
     possible_answers = []
     regex_string = pattern
     with open('5_letter_words.txt', 'r') as words:
