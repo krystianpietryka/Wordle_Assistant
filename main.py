@@ -1,19 +1,20 @@
 #!/usr/bin/python3
+#Script contains GUI for Wordle_Assistant
 import PySimpleGUI as sg
 import Wordle_Answers_For_Input
 
 sg.theme('DarkGreen')
 
-
-# First window
+# Main Window
 def Intro():
     layout = [[sg.Text('Welcome to Wordle_Assistant', size=(40, 1))],
               [sg.InputText('', size=(40, 1), key = 'pattern', enable_events=True)],
               [sg.InputText('', size=(40, 1), key = 'excluded', enable_events=True)],
               [sg.Button('Display Answers')] ,[sg.Button('Exit')]]
-    return sg.Window('DiceCalculator', layout, location=(600, 300), finalize=True)
+    return sg.Window('WordleAssistant', layout, location=(600, 300), finalize=True)
 
-    # First window
+
+# Window for displaying answers, will probably add scrolling in the future
 def Answers():
     layout = [[sg.Text(k='-OUTPUT-', size=(20, 50))]]
     return sg.Window('Possible Answers', layout, location=(600, 0), finalize=True)
@@ -35,7 +36,6 @@ def Main():
             result = ''.join([str(i) for i in result])
             window2 = Answers()
             window2['-OUTPUT-'].update(result.strip())
-
     window.close()
 
 if __name__ == '__main__':

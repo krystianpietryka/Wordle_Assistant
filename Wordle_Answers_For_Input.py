@@ -1,7 +1,6 @@
 import re
 
 #Scripts displays the possible 5 letter answers for given regex pattern
-
 def Display_Possible_Answers(pattern, excluded_letters):
     excluded_letters = excluded_letters.split()
     possible_answers = []
@@ -9,7 +8,8 @@ def Display_Possible_Answers(pattern, excluded_letters):
     with open('5_letter_words.txt', 'r') as words:
         for line in words.readlines():
             search_result = re.search(regex_string, line)
-            possible_flag = 1
+            #If search result matches regex, check if excluded letters are contained in the word
+            possible_flag = 1 
             if search_result:
                 for letter in line:
                     if letter in excluded_letters:
@@ -19,5 +19,3 @@ def Display_Possible_Answers(pattern, excluded_letters):
                     possible_answers.append(line)
     return possible_answers
     
-
-#Display_Possible_Answers('.me.t', 'pocraud')

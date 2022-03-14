@@ -8,16 +8,17 @@ with open('words_dictionary.json') as json_file:
 keys_to_delete = []
 
 keys = data.keys()
-# mark letters with len different than 5 to delete
+
+# Mark letters with len different than 5 for deletion
 for key in keys:
     if len(key) != 5:
         keys_to_delete.append(key)
 
+# Delete marked keys
 for i in range(len(keys_to_delete)):
     del data[keys_to_delete[i]]
 
 keys = data.keys()
-#print(len(keys))
 
 #Wipe the contents of 5_letter_words.txt
 open('5_letter_words.txt', 'w').close()
