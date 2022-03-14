@@ -1,8 +1,11 @@
 import re
 
 #Scripts displays the possible 5 letter answers for given regex pattern
-def Display_Possible_Answers(pattern, excluded_letters):
-    excluded_letters = excluded_letters.split()
+def Display_Possible_Answers(pattern, excluded_letters_input):
+    excluded_letters = []
+    for letter in excluded_letters_input:
+        excluded_letters.append(letter)
+    print(excluded_letters)
     possible_answers = []
     regex_string = pattern
     with open('5_letter_words.txt', 'r') as words:

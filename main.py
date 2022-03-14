@@ -31,11 +31,14 @@ def Main():
                 window2 = None
             elif window == window1:     # if closing win 1, exit program
                 break
+        # Call Wordle_Answers_For_Input.Display_Possible_Answers for entered pattern and excluded letters
+        # Display in new popup window
         elif event == 'Display Answers' and not window2:
+            print(values['excluded'])
             result = Wordle_Answers_For_Input.Display_Possible_Answers(values['pattern'], values['excluded'])
             result = ''.join([str(i) for i in result])
             window2 = Answers()
-            window2['-OUTPUT-'].update(result.strip())
+            window2['-OUTPUT-'].update(result) # Strip the results o
     window.close()
 
 if __name__ == '__main__':
