@@ -1,8 +1,3 @@
-#Make this a wordle clone, not only a regex machine
-#With Good letters
-#     Bad Letters
-#      known letters
-
 import re
 
 allowed_symbols = ['.', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 
@@ -28,12 +23,11 @@ def Display_Possible_Answers(excluded_letters_input, green_letters_input, yellow
 
     #Filter the 5 letter words by the letters tables
     possible_answers = []
-    green_regex_string = green_letters
     with open('5_letter_words.txt', 'r') as words:
 
         # Loop through the 5 letter words, filter by green_letters and excluded_letters
         for line in words.readlines():
-            search_result = re.search(green_regex_string, line)
+            search_result = re.search(green_letters_input, line)
             #If search result matches regex, check if excluded letters are contained in the word
             possible_flag = 1 
             if search_result:
@@ -43,20 +37,20 @@ def Display_Possible_Answers(excluded_letters_input, green_letters_input, yellow
                         break
                 if possible_flag == 1:
                     possible_answers.append(line)
-        yellows_not_dots = 0
-        for symbol in yellow_letters:
-            if symbol != '.':
-                yellows_not_dots+=1
+
+        answers_to_delete = []
         # Loop through filtered answers, delete from possible answers if letters do not contain all of the yellow_letters
         for answer in possible_answers:
-            
             yellow_count = 0
             index_count = 0
             for letter in answer:
                 if letter in yellow_letters and answer[index_count] != green_letters[index_count]:
                     yellow_count += 1
+                    print('\n', answer, 'yellow_count :', yellow_count)   
                 index_count += 1
-            if yellow_count != yellows_not_dots:
-                possible_answers.remove(answer)
+            if yellow_count != len(yellow_letters):
+                answers_to_delete.append(answer)
+        for marked_answer in answers_to_delete:
+            possible_answers.remove(marked_answer)
     return possible_answers
     
