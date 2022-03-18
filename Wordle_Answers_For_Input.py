@@ -38,7 +38,15 @@ def Display_Possible_Answers(excluded_letters_input, green_letters_input, yellow
                 if possible_flag == 1:
                     possible_answers.append(line)
 
+        # Count symbols in yellow input which are not dots, just letters
+        yellow_not_dots_count = 0
+        for symbol in yellow_letters:
+            if symbol != '.':
+                yellow_not_dots_count += 1
+
+
         answers_to_delete = []
+
         # Loop through filtered answers, delete from possible answers if letters do not contain all of the yellow_letters
         for answer in possible_answers:
             yellow_count = 0
@@ -46,9 +54,9 @@ def Display_Possible_Answers(excluded_letters_input, green_letters_input, yellow
             for letter in answer:
                 if letter in yellow_letters and answer[index_count] != green_letters[index_count]:
                     yellow_count += 1
-                    print('\n', answer, 'yellow_count :', yellow_count)   
+                    #print('\n', answer, 'yellow_count :', yellow_count)   
                 index_count += 1
-            if yellow_count != len(yellow_letters):
+            if yellow_count != yellow_not_dots_count:
                 answers_to_delete.append(answer)
         for marked_answer in answers_to_delete:
             possible_answers.remove(marked_answer)
