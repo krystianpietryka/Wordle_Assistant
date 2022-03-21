@@ -3,6 +3,33 @@ import re
 allowed_symbols = ['.', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 
 'j', 'k', 'l', 'm', 'n','o', 'p', 'q', 'r', 's','t', 'u','v', 'w', 'x', 'y','z']
 
+def Convert_Empty_Letters(letter1, letter2, letter3, letter4, letter5):
+    result = ''
+    if not letter1:
+        result += '.'
+    else:
+        result += letter1
+    if not letter2:
+        result += '.'
+    else:
+        result += letter2
+    if not letter3:
+        result += '.'
+    else:
+        result += letter3
+    if not letter4:
+        result += '.'
+    else:
+        result += letter4
+    if not letter5:
+        result += '.'
+    else:
+        result += letter5
+    return result
+        
+
+
+
 #Scripts displays the possible 5 letter answers for given regex pattern
 def Display_Possible_Answers(excluded_letters_input, green_letters_input, yellow_letters_input):
     #Convert string input to char table for all letter inputs (excluded, green, yellow)

@@ -4,20 +4,28 @@
 import PySimpleGUI as sg
 import Wordle_Answers_For_Input
 
-
-#TODO Divide input fields into single squares
 #TODO Update HELPTEXT
-#TODO a check to prevent yellow letters len lesser than 5
 #TODO Cleanup this shitty code
+#Update Readme.md on GitHub
+#More Testing
+#Test Environment
 
 sg.theme('DarkGreen')
 
 # Main Window
 def Intro():
     layout = [[sg.Text('Welcome to Wordle Assistant!', size=(40, 1))],
-              [sg.Text('Green Letters: '), sg.InputText('', size=(40, 1), key = 'green', enable_events=True)],
-              [sg.Text('Yellow Letters: '), sg.InputText('', size=(40, 1), key = 'yellow', enable_events=True)],
-              [sg.Text('Excluded Letters: '), sg.InputText('', size=(40, 1), key = 'excluded', enable_events=True)],
+              [sg.Text('Green Letters:  '), sg.InputText('', size=(2, 1), key = 'green1', enable_events=True),
+              sg.InputText('', size=(2, 1), key = 'green2', enable_events=True),
+              sg.InputText('', size=(2, 1), key = 'green3', enable_events=True),
+              sg.InputText('', size=(2, 1), key = 'green4', enable_events=True),
+              sg.InputText('', size=(2, 1), key = 'green5', enable_events=True)],
+              [sg.Text('Yellow Letters: '), sg.InputText('', size=(2, 1), key = 'yellow1', enable_events=True),
+              sg.InputText('', size=(2, 1), key = 'yellow2', enable_events=True),
+              sg.InputText('', size=(2, 1), key = 'yellow3', enable_events=True),
+              sg.InputText('', size=(2, 1), key = 'yellow4', enable_events=True),
+              sg.InputText('', size=(2, 1), key = 'yellow5', enable_events=True)],
+              [sg.Text('Excluded Letters: '), sg.InputText('', size=(20, 1), key = 'excluded', enable_events=True)],
               [sg.Button('Display Answers') ,sg.Button('Exit'), sg.Button('Help')]]
     return sg.Window('WordleAssistant', layout, finalize=True)
 
@@ -30,11 +38,13 @@ def Answers():
 def Help():
     layout = [[sg.Text(""" Hi! Thank you for using Wordle Assistant!
 
-    1) Pattern Input: Input known/unknown letters pattern here.
-    Accepts letters of the english alphabet, and the
-    "." symbol, used for matching any letter. Input must be 5 symbols long.
+    1) Green Letters: Input known(green) letter pattern here.
+    Accepts all letters of the english alphabet, and the dot used to match any character,
+    but can be safely ommited, blank space will also match any character.
 
-    2) Excluded Input: Used for excluding words containing any of the input letters from the answer.
+    2) Yellow Letters: Same as the Green Letters input, but for yellow letters (duh).
+
+    3) Excluded Input: Used for excluding words containing any of the input letters from the answer.
     Accepts letters of the english alphabet. 
     Letters do not need to be separated with spaces, for ex. "yrdau" will suffice.
     
@@ -55,29 +65,29 @@ def Main():
         # Call Wordle_Answers_For_Input.Display_Possible_Answers for entered pattern and excluded letters
         # Display in new popup window
         elif event == 'Display Answers' and not window2:
-            result = Wordle_Answers_For_Input.Display_Possible_Answers(values['excluded'], values['green'], values['yellow'])
-            # Length Check
-            if (len(values['green']) != 5):
-                window2 = Answers()
-                window2['-OUTPUT-'].update('Green Pattern must be 5 letters!')
+            green = Wordle_Answers_For_Input.Convert_Empty_Letters(values['green1'], values['green2'], values['green3'], values['green4'], values['green5'])
+            yellow = Wordle_Answers_For_Input.Convert_Empty_Letters(values['yellow1'], values['yellow2'], values['yellow3'], values['yellow4'], values['yellow5'])
+            print(green, yellow)
+            result = Wordle_Answers_For_Input.Display_Possible_Answers(values['excluded'], green, yellow)
+            
+            # Valid Symbol Check
+            valid_symbol_flag = 1
+            for letter in yellow:
+                if letter not in Wordle_Answers_For_Input.allowed_symbols:
+                    valid_symbol_flag = 0
+                    break
+            for letter in green:
+                if letter not in Wordle_Answers_For_Input.allowed_symbols:
+                    valid_symbol_flag = 0
+                    break
+
+            # Display Results based on valid symbol flag
+            window2 = Answers()
+            if valid_symbol_flag == 1:
+                result = ''.join([str(i) for i in result])
+                window2['-OUTPUT-'].update(result)
             else:
-                # Valid Symbol Check
-                valid_symbol_flag = 1
-                for letter in values['yellow']:
-                    if letter not in Wordle_Answers_For_Input.allowed_symbols:
-                        valid_symbol_flag = 0
-                        break
-                for letter in values['green']:
-                    if letter not in Wordle_Answers_For_Input.allowed_symbols:
-                        valid_symbol_flag = 0
-                        break
-                # Display Results based on valid symbol flag
-                window2 = Answers()
-                if valid_symbol_flag == 1:
-                    result = ''.join([str(i) for i in result])
-                    window2['-OUTPUT-'].update(result)
-                else:
-                    window2['-OUTPUT-'].update('Invalid Symbol Input!')
+                window2['-OUTPUT-'].update('Invalid Symbol Input!')
         elif event == 'Help' and not window2:
             window2 = Help()
     window.close()
