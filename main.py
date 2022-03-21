@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-
-#Script contains GUI for Wordle_Assistant
 import PySimpleGUI as sg
 import Wordle_Answers_For_Input
 
-#TODO Update HELPTEXT
+#Script contains GUI for Wordle_Assistant
+
+
 #TODO Cleanup this shitty code
 #Update Readme.md on GitHub
 #More Testing
@@ -68,7 +68,6 @@ def Main():
         elif event == 'Display Answers' and not window2:
             green = Wordle_Answers_For_Input.Convert_Empty_Letters(values['green1'], values['green2'], values['green3'], values['green4'], values['green5'])
             yellow = Wordle_Answers_For_Input.Convert_Empty_Letters(values['yellow1'], values['yellow2'], values['yellow3'], values['yellow4'], values['yellow5'])
-            print(green, yellow)
             result = Wordle_Answers_For_Input.Display_Possible_Answers(values['excluded'], green, yellow)
             
             # Valid Symbol Check
