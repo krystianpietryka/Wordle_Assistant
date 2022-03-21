@@ -6,9 +6,9 @@ import Wordle_Answers_For_Input
 
 #TODO Divide input field into squares
 #TODO Update HELPTEXT
-#TODO Add wordle possible answers list - https://poetix.medium.com/playing-wordle-with-python-6750185ac168
+
 #TODO Remove Past wordle answers
-#TODO make answers responsive to yellow letter placement
+#TODO a check to prevent yellow letters len lesser than 5
 
 sg.theme('DarkGreen')
 
