@@ -9,6 +9,7 @@ import Wordle_Answers_For_Input
 #Update Readme.md on GitHub
 #More Testing
 #Test Environment
+#arrows shift input field - very important quality of life
 
 sg.theme('DarkGreen')
 
@@ -44,7 +45,7 @@ def Help():
 
     2) Yellow Letters: Same as the Green Letters input, but for yellow letters (duh).
 
-    3) Excluded Input: Used for excluding words containing any of the input letters from the answer.
+    3) Excluded Letters: Used for excluding words containing any of the input letters from the answer.
     Accepts letters of the english alphabet. 
     Letters do not need to be separated with spaces, for ex. "yrdau" will suffice.
     

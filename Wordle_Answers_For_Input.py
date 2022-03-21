@@ -28,15 +28,9 @@ def Convert_Empty_Letters(letter1, letter2, letter3, letter4, letter5):
     return result
         
 
-
-
 #Scripts displays the possible 5 letter answers for given regex pattern
-def Display_Possible_Answers(excluded_letters_input, green_letters_input, yellow_letters_input):
+def Display_Possible_Answers(excluded_letters, green_letters_input, yellow_letters_input):
     #Convert string input to char table for all letter inputs (excluded, green, yellow)
-    excluded_letters = []
-    for letter in excluded_letters_input:
-        if letter!= ' ':
-            excluded_letters.append(letter)
 
     green_letters = []
     for letter in green_letters_input:
@@ -52,7 +46,6 @@ def Display_Possible_Answers(excluded_letters_input, green_letters_input, yellow
     #Filter the 5 letter words by the letters tables
     possible_answers = []
     with open('allowed_guesses_combined.txt', 'r') as words:
-
         # Loop through the 5 letter words, filter by green_letters and excluded_letters
         for line in words.readlines():
             search_result = re.search(green_letters_input, line)
