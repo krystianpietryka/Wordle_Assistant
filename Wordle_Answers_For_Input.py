@@ -69,7 +69,20 @@ def Display_Possible_Answers(excluded_letters_input, green_letters_input, yellow
         for marked_answer in answers_to_delete:
             #print(marked_answer, answers_to_delete)
             possible_answers.remove(marked_answer)
+        
 
+        # Delete wordle answers used in the past
+        with open('past_answers.txt', 'r') as past_answers:
+            print('\n', possible_answers)
+            answers_to_delete.clear()
+            for past_answer in past_answers:
+                if past_answer in possible_answers:
+                    print(past_answer)
+                    answers_to_delete.append(past_answer)
+        
+        for marked_answer in answers_to_delete:
+            possible_answers.remove(marked_answer)
+            
     return possible_answers
     
     

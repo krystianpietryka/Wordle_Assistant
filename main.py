@@ -1,14 +1,14 @@
 #!/usr/bin/python3
+
 #Script contains GUI for Wordle_Assistant
 import PySimpleGUI as sg
 import Wordle_Answers_For_Input
 
 
-#TODO Divide input field into squares
+#TODO Divide input fields into single squares
 #TODO Update HELPTEXT
-
-#TODO Remove Past wordle answers
 #TODO a check to prevent yellow letters len lesser than 5
+#TODO Cleanup this shitty code
 
 sg.theme('DarkGreen')
 
