@@ -3,7 +3,8 @@ import PySimpleGUI as sg
 import Scripts.Wordle_Answers_For_Input as Wordle_Answers_For_Input
 
 #Script contains GUI for Wordle_Assistant
-
+#TODO current possible answers, excluded previous yellow letters known
+#Add page which suggests best starting words
 #Todo Incorporate some word usage probability??
 #TODO Cleanup this shitty code
 #Update Readme.md on GitHub
@@ -26,7 +27,7 @@ def Intro():
               sg.InputText('', size=(2, 1), key = 'yellow4', enable_events=True),
               sg.InputText('', size=(2, 1), key = 'yellow5', enable_events=True)],
               [sg.Text('Excluded Letters: '), sg.InputText('', size=(18, 1), key = 'excluded', enable_events=True)],
-              [sg.Button('Display Answers') ,sg.Button('Exit'), sg.Button('Help')]]
+              [sg.Button('Display Answers') ,sg.Button('Exit'), sg.Button('Help'), sg.Button('Best Starters')]]
     return sg.Window('WordleAssistant', layout, finalize=True)
 
 
@@ -50,6 +51,20 @@ def Help():
     
     """)]]
     return sg.Window('Help Page', layout,  finalize=True)
+
+def Best_Starters():
+    layout = [[sg.Text(""" Best Starting guesses (according to a few internet pages) in no particular order are as follows:
+    *STARE
+    *IRATE
+    *SOARE
+    *ROATE
+    *RAISE
+    *SLATE
+    *SAUCE
+    *SHINE
+    *SAUTE
+    """)]]
+    return sg.Window('Best Starters Page', layout,  finalize=True)
 
 # GUI Loop
 def Main():
@@ -89,6 +104,8 @@ def Main():
                 window2['-OUTPUT-'].update('Invalid Symbol Input!')
         elif event == 'Help' and not window2:
             window2 = Help()
+        elif event == 'Best Starters' and not window2:
+            Best_Starters()
     window.close()
 
 if __name__ == '__main__':
