@@ -29,60 +29,57 @@ def Convert_Empty_Letters(letter1, letter2, letter3, letter4, letter5):
         
 
 #Scripts displays the possible 5 letter answers for given regex pattern
-def Display_Possible_Answers(excluded_letters, green_letters_input, yellow_letters):
+def Display_Possible_Answers(possible_answers, excluded_letters, green_letters_input, yellow_letters):
+    print(len(possible_answers))
+    answers_to_delete = []
 
-    #Filter the 5 letter words by the letters tables
-    possible_answers = []
-    with open('Text_Files/allowed_guesses_combined.txt', 'r') as words:
-
-        # Loop through the 5 letter words, filter by green_letters and excluded_letters
-        for line in words.readlines():
-            search_result = re.search(green_letters_input, line)
-            
-            #If search result matches regex, check if excluded letters are contained in the word
-            possible_flag = 1 
-            if search_result:
-                for letter in line:
-                    if letter in excluded_letters:
-                        possible_flag = 0
-                        break
-                if possible_flag == 1:
-                    possible_answers.append(line)
-
-        answers_to_delete=[]
-
-        # Loop through filtered answers, delete from possible answers if letters do not contain all of the yellow letters
-        for answer in possible_answers:
-            for letter in yellow_letters:
-                if letter != '.':
-                    if letter not in answer:
-                        if answer not in answers_to_delete:
-                            answers_to_delete.append(answer)
-                
-        for marked_answer in answers_to_delete:
-            possible_answers.remove(marked_answer)
+    # Loop through the 5 letter words, filter by green_letters and excluded_letters
+    for line in possible_answers:
+        search_result = re.search(green_letters_input, line)
         
-        answers_to_delete.clear()
+        #If search result matches regex, check if excluded letters are contained in the word
+        if search_result:
+            for letter in line:
+                if letter in excluded_letters:
+                    answers_to_delete.append(line)
+        else:
+            if line not in answers_to_delete:
+                answers_to_delete.append(line)
 
-        #Exclude answers with same letter in the same index as yellow letters
-        for answer in possible_answers:
-            for i in range(0, 5):
-                if yellow_letters[i] == answer[i]:
+    
+
+    # Loop through filtered answers, delete from possible answers if letters do not contain all of the yellow letters
+    for answer in possible_answers:
+        for letter in yellow_letters:
+            if letter != '.':
+                if letter not in answer:
                     if answer not in answers_to_delete:
                         answers_to_delete.append(answer)
-        
-        for marked_answer in answers_to_delete:
-            possible_answers.remove(marked_answer)
-        
-        # Delete wordle answers used in the past
-        with open('Text_Files/past_answers.txt', 'r') as past_answers:
-            answers_to_delete.clear()
-            for past_answer in past_answers:
-                if past_answer in possible_answers:
-                    answers_to_delete.append(past_answer)
-        
-        for marked_answer in answers_to_delete:
-            possible_answers.remove(marked_answer)
+            
+    for marked_answer in answers_to_delete:
+        possible_answers.remove(marked_answer)
+    
+    answers_to_delete.clear()
+
+    #Exclude answers with same letter in the same index as yellow letters
+    for answer in possible_answers:
+        for i in range(0, 5):
+            if yellow_letters[i] == answer[i]:
+                if answer not in answers_to_delete:
+                    answers_to_delete.append(answer)
+    
+    for marked_answer in answers_to_delete:
+        possible_answers.remove(marked_answer)
+    
+    # Delete wordle answers used in the past
+    with open('Text_Files/past_answers.txt', 'r') as past_answers:
+        answers_to_delete.clear()
+        for past_answer in past_answers:
+            if past_answer in possible_answers:
+                answers_to_delete.append(past_answer)
+    
+    for marked_answer in answers_to_delete:
+        possible_answers.remove(marked_answer)
             
     return possible_answers
     

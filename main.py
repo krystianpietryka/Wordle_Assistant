@@ -27,7 +27,8 @@ def Intro():
               sg.InputText('', size=(2, 1), key = 'yellow4', enable_events=True),
               sg.InputText('', size=(2, 1), key = 'yellow5', enable_events=True)],
               [sg.Text('Excluded Letters: '), sg.InputText('', size=(18, 1), key = 'excluded', enable_events=True)],
-              [sg.Button('Display Answers') ,sg.Button('Exit'), sg.Button('Help'), sg.Button('Best Starters')]]
+              [sg.Button('Display Answers') ,sg.Button('Exit'), sg.Button('Help')],
+              [sg.Button('Best Starters'), sg.Button('Clear Possible Answer List')]]
     return sg.Window('WordleAssistant', layout, finalize=True)
 
 
@@ -68,6 +69,11 @@ def Best_Starters():
 
 # GUI Loop
 def Main():
+    possible_answers = []
+    with open('Text_Files/allowed_guesses_combined.txt', 'r') as words:
+        for line in words.readlines():
+            possible_answers.append(line)
+
     window1, window2 = Intro(), None
     while True:
         window, event, values = sg.read_all_windows()
@@ -82,7 +88,7 @@ def Main():
         elif event == 'Display Answers' and not window2:
             green = Wordle_Answers_For_Input.Convert_Empty_Letters(values['green1'], values['green2'], values['green3'], values['green4'], values['green5'])
             yellow = Wordle_Answers_For_Input.Convert_Empty_Letters(values['yellow1'], values['yellow2'], values['yellow3'], values['yellow4'], values['yellow5'])
-            result = Wordle_Answers_For_Input.Display_Possible_Answers(values['excluded'], green, yellow)
+            result = Wordle_Answers_For_Input.Display_Possible_Answers(possible_answers, values['excluded'], green, yellow)
             
             # Valid Symbol Check
             valid_symbol_flag = 1
@@ -90,6 +96,7 @@ def Main():
                 if letter not in Wordle_Answers_For_Input.allowed_symbols:
                     valid_symbol_flag = 0
                     break
+
             for letter in green:
                 if letter not in Wordle_Answers_For_Input.allowed_symbols:
                     valid_symbol_flag = 0
