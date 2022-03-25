@@ -57,6 +57,16 @@ def Help():
     3) Excluded Letters: Used for excluding words containing any of the input letters from the answer.
     Accepts letters of the english alphabet. 
     Letters do not need to be separated with spaces, for ex. "yrdau" will suffice.
+
+    4) Display Answers: Displays Answers.
+
+    5) Exit: Exits.
+
+    6) Help: You are Here!
+
+    7) Best Starters: Lists some of the best starting wordle guesses.
+
+    8) Clear Memory: Restarts the Wordle_Assistant.
     
     """)]]
     return sg.Window('Help Page', layout,  finalize=True)
