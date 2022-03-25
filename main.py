@@ -53,7 +53,7 @@ def Help():
     return sg.Window('Help Page', layout,  finalize=True)
 
 def Best_Starters():
-    layout = [[sg.Text(""" Best Starting guesses (according to a few internet pages) in no particular order are as follows:
+    layout = [[sg.Text("""The best starting guesses (according to a few internet pages) in no particular order are as follows:
     *STARE
     *IRATE
     *SOARE
