@@ -33,7 +33,7 @@ def Display_Possible_Answers(excluded_letters, green_letters_input, yellow_lette
 
     #Filter the 5 letter words by the letters tables
     possible_answers = []
-    with open('allowed_guesses_combined.txt', 'r') as words:
+    with open('Text_Files/allowed_guesses_combined.txt', 'r') as words:
 
         # Loop through the 5 letter words, filter by green_letters and excluded_letters
         for line in words.readlines():
@@ -75,7 +75,7 @@ def Display_Possible_Answers(excluded_letters, green_letters_input, yellow_lette
             possible_answers.remove(marked_answer)
         
         # Delete wordle answers used in the past
-        with open('past_answers.txt', 'r') as past_answers:
+        with open('Text_Files/past_answers.txt', 'r') as past_answers:
             answers_to_delete.clear()
             for past_answer in past_answers:
                 if past_answer in possible_answers:
