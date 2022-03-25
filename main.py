@@ -117,7 +117,7 @@ def Main():
             # Display Results based on valid symbol flag
             window2 = Answers()
             if valid_symbol_flag == 1:
-                result = ''.join([str(i) for i in result])
+                result = 'Num of Answers: ' + str(len(possible_answers)) +'\n\n' + ''.join([str(i) for i in result])
                 window2['-OUTPUT-'].update(result)
             else:
                 window2['-OUTPUT-'].update('Invalid Symbol Input!')
