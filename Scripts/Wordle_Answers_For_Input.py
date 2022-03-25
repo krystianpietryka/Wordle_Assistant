@@ -14,35 +14,18 @@ def Valid_Symbol_Check(combined_inputs):
 
 
 # This definetely can be done better
-def Convert_Empty_Letters(letter1, letter2, letter3, letter4, letter5):
+def Convert_Empty_Letters(letters):
     result = ''
-    if not letter1:
-        result += '.'
-    else:
-        result += letter1
-    if not letter2:
-        result += '.'
-    else:
-        result += letter2
-    if not letter3:
-        result += '.'
-    else:
-        result += letter3
-    if not letter4:
-        result += '.'
-    else:
-        result += letter4
-    if not letter5:
-        result += '.'
-    else:
-        result += letter5
+    for letter in letters:
+        if not letter:
+            result += '.'
+        else:
+            result += letter
     return result
         
 
 #Scripts displays the possible 5 letter answers for given regex pattern
 def Display_Possible_Answers(possible_answers, excluded_letters, green_letters_input, yellow_letters):
-
-
 
     answers_to_delete = []
 

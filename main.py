@@ -2,26 +2,22 @@
 
 #Script contains GUI for Wordle_Assistant
 
+from ast import Tuple
 import copy
 import PySimpleGUI as sg
 import Scripts.Wordle_Answers_For_Input as Wordle_Answers_For_Input
-
-
-
 
 #Todo Incorporate some word usage probability??
 #Update Readme.md on GitHub
 #More Testing
 #arrows shift input field - very important quality of life
-#Disallow yellow or green input in the same letter space
 #Go through help page and naming conventions to make it more user friendly
 #Make display list scrollable
 #make filter parameters for answer list
 #TODO Cleanup this shitty code
 #Optimize this shitty code
 #Comment this shitty code
-#Update window after clear memory to clear text_inputs
-#Display some confirmation of clearing memory
+#Incorporate same letter green + yellow in different places as having two of the same letter
 
 sg.theme('DarkGreen')
 
@@ -100,9 +96,8 @@ def Main():
         # Call Wordle_Answers_For_Input.Display_Possible_Answers for entered pattern and excluded letters
         # Display in new popup window
         elif event == 'Display Answers' and not window2:
-            green = Wordle_Answers_For_Input.Convert_Empty_Letters(values['green1'], values['green2'], values['green3'], values['green4'], values['green5'])
-            yellow = Wordle_Answers_For_Input.Convert_Empty_Letters(values['yellow1'], values['yellow2'], values['yellow3'], values['yellow4'], values['yellow5'])
-
+            green = Wordle_Answers_For_Input.Convert_Empty_Letters((values['green1'],values['green2'], values['green3'], values['green4'], values['green5']))
+            yellow = Wordle_Answers_For_Input.Convert_Empty_Letters((values['yellow1'], values['yellow2'], values['yellow3'], values['yellow4'], values['yellow5']))
             # Valid Symbol Check for green and yellow letters input
             valid_symbol_flag = Wordle_Answers_For_Input.Valid_Symbol_Check(green + yellow)
             
