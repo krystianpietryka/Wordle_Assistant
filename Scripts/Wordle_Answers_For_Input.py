@@ -30,7 +30,6 @@ def Convert_Empty_Letters(letter1, letter2, letter3, letter4, letter5):
 
 #Scripts displays the possible 5 letter answers for given regex pattern
 def Display_Possible_Answers(possible_answers, excluded_letters, green_letters_input, yellow_letters):
-    print(len(possible_answers))
     answers_to_delete = []
 
     # Loop through the 5 letter words, filter by green_letters and excluded_letters
@@ -80,7 +79,9 @@ def Display_Possible_Answers(possible_answers, excluded_letters, green_letters_i
     
     for marked_answer in answers_to_delete:
         possible_answers.remove(marked_answer)
-            
+    
+    print('Amount of Possible Answers: ',len(possible_answers))    
+
     return possible_answers
     
     
