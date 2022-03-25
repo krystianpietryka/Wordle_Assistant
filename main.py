@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 import PySimpleGUI as sg
 import Scripts.Wordle_Answers_For_Input as Wordle_Answers_For_Input
-import copy
 
 #Script contains GUI for Wordle_Assistant
-#TODO Optimize first guess
+#TODO current possible answers, excluded previous yellow letters known
 #Add page which suggests best starting words
 #Todo Incorporate some word usage probability??
 #TODO Cleanup this shitty code
@@ -69,11 +68,6 @@ def Best_Starters():
 
 # GUI Loop
 def Main():
-    result = []
-    with open('Text_Files/allowed_guesses_combined.txt', 'r') as words:
-                    for word in words:
-                        result.append(word)
-    first_result_flag = 1
     window1, window2 = Intro(), None
     while True:
         window, event, values = sg.read_all_windows()
@@ -83,21 +77,12 @@ def Main():
                 window2 = None
             elif window == window1:     # if closing win 1, exit program
                 break
-
         # Call Wordle_Answers_For_Input.Display_Possible_Answers for entered pattern and excluded letters
         # Display in new popup window
         elif event == 'Display Answers' and not window2:
-            if first_result_flag == 1:
-                print('possible answers first')
-                green = Wordle_Answers_For_Input.Convert_Empty_Letters(values['green1'], values['green2'], values['green3'], values['green4'], values['green5'])
-                yellow = Wordle_Answers_For_Input.Convert_Empty_Letters(values['yellow1'], values['yellow2'], values['yellow3'], values['yellow4'], values['yellow5'])
-                result = Wordle_Answers_For_Input.Display_Possible_Answers(result, values['excluded'], green, yellow)
-                first_result_flag = 0
-            else:
-                print('possible answers not first')
-                green = Wordle_Answers_For_Input.Convert_Empty_Letters(values['green1'], values['green2'], values['green3'], values['green4'], values['green5'])
-                yellow = Wordle_Answers_For_Input.Convert_Empty_Letters(values['yellow1'], values['yellow2'], values['yellow3'], values['yellow4'], values['yellow5'])
-                result = Wordle_Answers_For_Input.Display_Possible_Answers(result, values['excluded'], green, yellow)    
+            green = Wordle_Answers_For_Input.Convert_Empty_Letters(values['green1'], values['green2'], values['green3'], values['green4'], values['green5'])
+            yellow = Wordle_Answers_For_Input.Convert_Empty_Letters(values['yellow1'], values['yellow2'], values['yellow3'], values['yellow4'], values['yellow5'])
+            result = Wordle_Answers_For_Input.Display_Possible_Answers(values['excluded'], green, yellow)
             
             # Valid Symbol Check
             valid_symbol_flag = 1
@@ -113,8 +98,8 @@ def Main():
             # Display Results based on valid symbol flag
             window2 = Answers()
             if valid_symbol_flag == 1:
-                result_text = ''.join([str(i) for i in result])
-                window2['-OUTPUT-'].update(result_text)
+                result = ''.join([str(i) for i in result])
+                window2['-OUTPUT-'].update(result)
             else:
                 window2['-OUTPUT-'].update('Invalid Symbol Input!')
         elif event == 'Help' and not window2:
