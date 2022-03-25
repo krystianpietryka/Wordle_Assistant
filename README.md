@@ -1,7 +1,7 @@
 
 # Wordle_Assistant
 ## Description
-Wordle Assistant is basically an expanded regex machine, searching through 5-letter-word english dictionary, with the capability of excluding certain letters in results.
+Wordle Assistant is a script which suggests possible wordle answers for given Green Letters, Yellow Letters and Excluded Letters Input.
 ## Installation
 Not required, run __main__.py.\
 Modules needed are in requirements.txt.\
