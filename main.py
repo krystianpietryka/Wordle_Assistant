@@ -48,7 +48,7 @@ def Answers():
 def Help():
     layout = [[sg.Text(""" Hi! Thank you for using Wordle Assistant!
 
-    1) Green Letters: Input known(green) letter pattern here.
+    1) Green Letters: Input known(green) letters pattern here.
     Accepts all letters of the english alphabet, and the dot used to match any character,
     but can be safely ommited, blank space will also match any character.
 
@@ -66,7 +66,7 @@ def Help():
 
     7) Best Starters: Lists some of the best starting wordle guesses.
 
-    8) Clear Memory: Restarts the Wordle_Assistant.
+    8) Clear Memory: Restarts Wordle_Assistant.
     
     """)]]
     return sg.Window('Help Page', layout,  finalize=True)
@@ -82,6 +82,7 @@ def Best_Starters():
     *SAUCE
     *SHINE
     *SAUTE
+    *TEARS
     """)]]
     return sg.Window('Best Starters Page', layout,  finalize=True)
 
@@ -103,8 +104,6 @@ def Main():
                 window2 = None
             elif window == window1:     # if closing win 1, exit program
                 break
-        # Call Wordle_Answers_For_Input.Display_Possible_Answers for entered pattern and excluded letters
-        # Display in new popup window
         elif event == 'Display Answers' and not window2:
             green = Wordle_Answers_For_Input.Convert_Empty_Letters((values['green1'],values['green2'], values['green3'], values['green4'], values['green5']))
             yellow = Wordle_Answers_For_Input.Convert_Empty_Letters((values['yellow1'], values['yellow2'], values['yellow3'], values['yellow4'], values['yellow5']))

@@ -12,7 +12,6 @@ def Valid_Symbol_Check(combined_inputs):
             return 0
     return 1
 
-
 # This definetely can be done better
 def Convert_Empty_Letters(letters):
     result = ''
@@ -23,7 +22,6 @@ def Convert_Empty_Letters(letters):
             result += letter
     return result
         
-
 #Scripts displays the possible 5 letter answers for given regex pattern
 def Display_Possible_Answers(possible_answers, excluded_letters, green_letters_input, yellow_letters):
 
@@ -41,7 +39,6 @@ def Display_Possible_Answers(possible_answers, excluded_letters, green_letters_i
         else:
             answers_to_delete.append(line)
 
-    
     # Loop through filtered answers, delete from possible answers if letters do not contain all of the yellow letters
     for answer in possible_answers:
         for letter in yellow_letters:
@@ -68,7 +65,6 @@ def Display_Possible_Answers(possible_answers, excluded_letters, green_letters_i
             possible_answers.remove(marked_answer)
         except:
             pass
-
 
     return possible_answers
     
