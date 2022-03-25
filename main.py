@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import PySimpleGUI as sg
-import Wordle_Answers_For_Input
+import Scripts.Wordle_Answers_For_Input as Wordle_Answers_For_Input
 
 #Script contains GUI for Wordle_Assistant
 
@@ -8,7 +8,6 @@ import Wordle_Answers_For_Input
 #TODO Cleanup this shitty code
 #Update Readme.md on GitHub
 #More Testing
-#Test Environment
 #arrows shift input field - very important quality of life
 
 sg.theme('DarkGreen')
