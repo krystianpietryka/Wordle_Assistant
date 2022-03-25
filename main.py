@@ -1,12 +1,14 @@
 #!/usr/bin/python3
+
+#Script contains GUI for Wordle_Assistant
+
 import copy
 import PySimpleGUI as sg
 import Scripts.Wordle_Answers_For_Input as Wordle_Answers_For_Input
 
 
-#Script contains GUI for Wordle_Assistant
 
-#If incorrect symbol do not filter possible answers!
+
 #Todo Incorporate some word usage probability??
 #Update Readme.md on GitHub
 #More Testing
@@ -126,6 +128,8 @@ def Main():
             window2 = Help()
         elif event == 'Clear Memory' and not window2:
             possible_answers = copy.deepcopy(possible_answers_initial)
+            window1.close()
+            window1 = Intro()
     window.close()
 
 if __name__ == '__main__':
