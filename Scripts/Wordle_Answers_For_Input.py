@@ -1,8 +1,13 @@
 import re
 
-allowed_symbols = ['.', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 
-'j', 'k', 'l', 'm', 'n','o', 'p', 'q', 'r', 's','t', 'u','v', 'w', 'x', 'y','z']
+def Valid_Symbol_Check(letter):
+    if (letter == '.' or letter.isalpha()):
+        return 1
+    else:
+        return 0
 
+
+# This definetely can be done better
 def Convert_Empty_Letters(letter1, letter2, letter3, letter4, letter5):
     result = ''
     if not letter1:
@@ -73,7 +78,7 @@ def Display_Possible_Answers(possible_answers, excluded_letters, green_letters_i
         except:
             pass
 
-        
+
     return possible_answers
     
     

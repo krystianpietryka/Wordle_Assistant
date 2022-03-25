@@ -6,7 +6,8 @@ import Scripts.Wordle_Answers_For_Input as Wordle_Answers_For_Input
 
 #Script contains GUI for Wordle_Assistant
 
-#Fix Spaghetti deleting logic, too many unnecesary existence check
+#Convert uppercase input to lowercase, but not disallow it
+#If incorrect symbol do not filter possible answers!
 #Todo Incorporate some word usage probability??
 #Update Readme.md on GitHub
 #More Testing
@@ -102,15 +103,10 @@ def Main():
             yellow = Wordle_Answers_For_Input.Convert_Empty_Letters(values['yellow1'], values['yellow2'], values['yellow3'], values['yellow4'], values['yellow5'])
             result = Wordle_Answers_For_Input.Display_Possible_Answers(possible_answers, values['excluded'], green, yellow)
             
-            # Valid Symbol Check
+            # Valid Symbol Check for green and yellow letters input
             valid_symbol_flag = 1
-            for letter in yellow:
-                if letter not in Wordle_Answers_For_Input.allowed_symbols:
-                    valid_symbol_flag = 0
-                    break
-
-            for letter in green:
-                if letter not in Wordle_Answers_For_Input.allowed_symbols:
+            for letter in (green +yellow):
+                if not Wordle_Answers_For_Input.Valid_Symbol_Check(letter):
                     valid_symbol_flag = 0
                     break
 
