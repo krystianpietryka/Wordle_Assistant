@@ -15,17 +15,17 @@ sg.theme('DarkGreen')
 # Main Window
 def Intro():
     layout = [[sg.Text('Welcome to Wordle Assistant!', size=(40, 1))],
-              [sg.Text('Green Letters:  '), sg.InputText('', size=(2, 1), key = 'green1', enable_events=True),
+              [sg.Text('Green Letters:      '), sg.InputText('', size=(2, 1), key = 'green1', enable_events=True),
               sg.InputText('', size=(2, 1), key = 'green2', enable_events=True),
               sg.InputText('', size=(2, 1), key = 'green3', enable_events=True),
               sg.InputText('', size=(2, 1), key = 'green4', enable_events=True),
               sg.InputText('', size=(2, 1), key = 'green5', enable_events=True)],
-              [sg.Text('Yellow Letters: '), sg.InputText('', size=(2, 1), key = 'yellow1', enable_events=True),
+              [sg.Text('Yellow Letters:     '), sg.InputText('', size=(2, 1), key = 'yellow1', enable_events=True),
               sg.InputText('', size=(2, 1), key = 'yellow2', enable_events=True),
               sg.InputText('', size=(2, 1), key = 'yellow3', enable_events=True),
               sg.InputText('', size=(2, 1), key = 'yellow4', enable_events=True),
               sg.InputText('', size=(2, 1), key = 'yellow5', enable_events=True)],
-              [sg.Text('Excluded Letters: '), sg.InputText('', size=(20, 1), key = 'excluded', enable_events=True)],
+              [sg.Text('Excluded Letters: '), sg.InputText('', size=(18, 1), key = 'excluded', enable_events=True)],
               [sg.Button('Display Answers') ,sg.Button('Exit'), sg.Button('Help')]]
     return sg.Window('WordleAssistant', layout, finalize=True)
 
