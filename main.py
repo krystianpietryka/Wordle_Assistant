@@ -4,7 +4,7 @@ import Wordle_Answers_For_Input
 
 #Script contains GUI for Wordle_Assistant
 
-
+#Todo Incorporate some word usage probability??
 #TODO Cleanup this shitty code
 #Update Readme.md on GitHub
 #More Testing
