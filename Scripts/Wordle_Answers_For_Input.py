@@ -1,10 +1,16 @@
 import re
 
-def Valid_Symbol_Check(letter):
-    if (letter == '.' or letter.isalpha()):
-        return 1
-    else:
-        return 0
+def Same_Place_Letters_Check(green, yellow):
+    for i in range(len(green)):
+        if green[i].isalpha() and yellow[i].isalpha():
+            return 0
+    return 1
+
+def Valid_Symbol_Check(combined_inputs):
+    for letter in combined_inputs:
+        if not (letter == '.' or letter.isalpha()):
+            return 0
+    return 1
 
 
 # This definetely can be done better
@@ -35,6 +41,8 @@ def Convert_Empty_Letters(letter1, letter2, letter3, letter4, letter5):
 
 #Scripts displays the possible 5 letter answers for given regex pattern
 def Display_Possible_Answers(possible_answers, excluded_letters, green_letters_input, yellow_letters):
+
+
 
     answers_to_delete = []
 

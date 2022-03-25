@@ -100,20 +100,22 @@ def Main():
         elif event == 'Display Answers' and not window2:
             green = Wordle_Answers_For_Input.Convert_Empty_Letters(values['green1'], values['green2'], values['green3'], values['green4'], values['green5'])
             yellow = Wordle_Answers_For_Input.Convert_Empty_Letters(values['yellow1'], values['yellow2'], values['yellow3'], values['yellow4'], values['yellow5'])
-            result = Wordle_Answers_For_Input.Display_Possible_Answers(possible_answers, values['excluded'].lower(), green.lower(), yellow.lower())
-            
+
             # Valid Symbol Check for green and yellow letters input
-            valid_symbol_flag = 1
-            for letter in (green +yellow):
-                if not Wordle_Answers_For_Input.Valid_Symbol_Check(letter):
-                    valid_symbol_flag = 0
-                    break
+            valid_symbol_flag = Wordle_Answers_For_Input.Valid_Symbol_Check(green + yellow)
+            
+            #Same Place Letter Check for green and yellow letters input
+            same_place_flag = Wordle_Answers_For_Input.Same_Place_Letters_Check(green, yellow)
 
             # Display Results based on valid symbol flag
             window2 = Answers()
             if valid_symbol_flag == 1:
-                result = 'Num of Answers: ' + str(len(possible_answers)) +'\n\n' + ''.join([str(i) for i in result])
-                window2['-OUTPUT-'].update(result)
+                if same_place_flag == 1:
+                    result = Wordle_Answers_For_Input.Display_Possible_Answers(possible_answers, values['excluded'].lower(), green.lower(), yellow.lower())
+                    result = 'Num of Answers: ' + str(len(possible_answers)) +'\n\n' + ''.join([str(i) for i in result])
+                    window2['-OUTPUT-'].update(result)
+                else:
+                    window2['-OUTPUT-'].update('Yellow and Green letters exist at the same index!')
             else:
                 window2['-OUTPUT-'].update('Invalid Symbol Input!')
         elif event == 'Help' and not window2:
