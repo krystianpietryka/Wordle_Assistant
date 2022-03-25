@@ -6,11 +6,11 @@ import Scripts.Wordle_Answers_For_Input as Wordle_Answers_For_Input
 
 #Script contains GUI for Wordle_Assistant
 
+#Fix Spaghetti deleting logic, too many unnecesary existence check
 #Todo Incorporate some word usage probability??
 #Update Readme.md on GitHub
 #More Testing
 #arrows shift input field - very important quality of life
-#Display amount of possible answers on top of display answers
 #Disallow yellow or green input in the same letter space
 #Go through help page and naming conventions to make it more user friendly
 #Make display list scrollable

@@ -30,6 +30,7 @@ def Convert_Empty_Letters(letter1, letter2, letter3, letter4, letter5):
 
 #Scripts displays the possible 5 letter answers for given regex pattern
 def Display_Possible_Answers(possible_answers, excluded_letters, green_letters_input, yellow_letters):
+
     answers_to_delete = []
 
     # Loop through the 5 letter words, filter by green_letters and excluded_letters
@@ -42,46 +43,37 @@ def Display_Possible_Answers(possible_answers, excluded_letters, green_letters_i
                 if letter in excluded_letters:
                     answers_to_delete.append(line)
         else:
-            if line not in answers_to_delete:
-                answers_to_delete.append(line)
+            answers_to_delete.append(line)
 
     
-
     # Loop through filtered answers, delete from possible answers if letters do not contain all of the yellow letters
     for answer in possible_answers:
         for letter in yellow_letters:
             if letter != '.':
                 if letter not in answer:
-                    if answer not in answers_to_delete:
-                        answers_to_delete.append(answer)
+                    answers_to_delete.append(answer)
             
-    for marked_answer in answers_to_delete:
-        possible_answers.remove(marked_answer)
-    
-    answers_to_delete.clear()
-
     #Exclude answers with same letter in the same index as yellow letters
     for answer in possible_answers:
         for i in range(0, 5):
             if yellow_letters[i] == answer[i]:
-                if answer not in answers_to_delete:
-                    answers_to_delete.append(answer)
-    
-    for marked_answer in answers_to_delete:
-        possible_answers.remove(marked_answer)
+                answers_to_delete.append(answer)
     
     # Delete wordle answers used in the past
     with open('Text_Files/past_answers.txt', 'r') as past_answers:
-        answers_to_delete.clear()
         for past_answer in past_answers:
             if past_answer in possible_answers:
                 answers_to_delete.append(past_answer)
     
-    for marked_answer in answers_to_delete:
-        possible_answers.remove(marked_answer)
-    
-    print('Amount of Possible Answers: ',len(possible_answers))    
 
+    # Deleting answers marked for deletion
+    for marked_answer in answers_to_delete:
+        try:
+            possible_answers.remove(marked_answer)
+        except:
+            pass
+
+        
     return possible_answers
     
     
