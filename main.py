@@ -1,15 +1,25 @@
 #!/usr/bin/python3
+import copy
 import PySimpleGUI as sg
 import Scripts.Wordle_Answers_For_Input as Wordle_Answers_For_Input
 
+
 #Script contains GUI for Wordle_Assistant
-#TODO current possible answers, excluded previous yellow letters known
-#Add page which suggests best starting words
+
 #Todo Incorporate some word usage probability??
-#TODO Cleanup this shitty code
 #Update Readme.md on GitHub
 #More Testing
 #arrows shift input field - very important quality of life
+#Display amount of possible answers on top of display answers
+#Disallow yellow or green input in the same letter space
+#Go through help page and naming conventions to make it more user friendly
+#Make display list scrollable
+#make filter parameters for answer list
+#TODO Cleanup this shitty code
+#Optimize this shitty code
+#Comment this shitty code
+#Update window after clear memory to clear text_inputs
+#Display some confirmation of clearing memory
 
 sg.theme('DarkGreen')
 
@@ -28,7 +38,7 @@ def Intro():
               sg.InputText('', size=(2, 1), key = 'yellow5', enable_events=True)],
               [sg.Text('Excluded Letters: '), sg.InputText('', size=(18, 1), key = 'excluded', enable_events=True)],
               [sg.Button('Display Answers') ,sg.Button('Exit'), sg.Button('Help')],
-              [sg.Button('Best Starters'), sg.Button('Clear Possible Answer List')]]
+              [sg.Button('Best Starters'), sg.Button('Clear Memory')]]
     return sg.Window('WordleAssistant', layout, finalize=True)
 
 
@@ -69,10 +79,12 @@ def Best_Starters():
 
 # GUI Loop
 def Main():
-    possible_answers = []
+    possible_answers_initial = []
     with open('Text_Files/allowed_guesses_combined.txt', 'r') as words:
         for line in words.readlines():
-            possible_answers.append(line)
+            possible_answers_initial.append(line)
+
+    possible_answers = copy.deepcopy(possible_answers_initial)
 
     window1, window2 = Intro(), None
     while True:
@@ -113,6 +125,10 @@ def Main():
             window2 = Help()
         elif event == 'Best Starters' and not window2:
             Best_Starters()
+        elif event == 'Help' and not window2:
+            window2 = Help()
+        elif event == 'Clear Memory' and not window2:
+            possible_answers = copy.deepcopy(possible_answers_initial)
     window.close()
 
 if __name__ == '__main__':
