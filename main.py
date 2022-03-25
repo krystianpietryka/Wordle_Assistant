@@ -98,9 +98,9 @@ def Main():
         # Call Wordle_Answers_For_Input.Display_Possible_Answers for entered pattern and excluded letters
         # Display in new popup window
         elif event == 'Display Answers' and not window2:
-            green = Wordle_Answers_For_Input.Convert_Empty_Letters(values['green1'].lower(), values['green2'].lower(), values['green3'].lower(), values['green4'].lower(), values['green5'].lower())
-            yellow = Wordle_Answers_For_Input.Convert_Empty_Letters(values['yellow1'].lower(), values['yellow2'].lower(), values['yellow3'].lower(), values['yellow4'].lower(), values['yellow5'].lower())
-            result = Wordle_Answers_For_Input.Display_Possible_Answers(possible_answers, values['excluded'].lower(), green, yellow)
+            green = Wordle_Answers_For_Input.Convert_Empty_Letters(values['green1'], values['green2'], values['green3'], values['green4'], values['green5'])
+            yellow = Wordle_Answers_For_Input.Convert_Empty_Letters(values['yellow1'], values['yellow2'], values['yellow3'], values['yellow4'], values['yellow5'])
+            result = Wordle_Answers_For_Input.Display_Possible_Answers(possible_answers, values['excluded'].lower(), green.lower(), yellow.lower())
             
             # Valid Symbol Check for green and yellow letters input
             valid_symbol_flag = 1
