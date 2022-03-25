@@ -29,10 +29,9 @@ def Convert_Empty_Letters(letter1, letter2, letter3, letter4, letter5):
         
 
 #Scripts displays the possible 5 letter answers for given regex pattern
-def Display_Possible_Answers(excluded_letters, green_letters_input, yellow_letters):
+def Display_Possible_Answers(possible_answers, excluded_letters, green_letters_input, yellow_letters):
 
     #Filter the 5 letter words by the letters tables
-    possible_answers = []
     with open('Text_Files/allowed_guesses_combined.txt', 'r') as words:
 
         # Loop through the 5 letter words, filter by green_letters and excluded_letters
@@ -46,8 +45,6 @@ def Display_Possible_Answers(excluded_letters, green_letters_input, yellow_lette
                     if letter in excluded_letters:
                         possible_flag = 0
                         break
-                if possible_flag == 1:
-                    possible_answers.append(line)
 
         answers_to_delete=[]
 
