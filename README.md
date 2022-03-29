@@ -12,3 +12,4 @@ Run -> Input the pattern -> Optionally input the excluded letters -> Display Res
 ## License
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+![image](https://user-images.githubusercontent.com/96234810/160625166-06aad62a-bfc1-4127-b132-8b4a4763ddb2.png)
