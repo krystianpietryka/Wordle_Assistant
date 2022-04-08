@@ -14,4 +14,5 @@ Run -> Input the pattern -> Optionally input the excluded letters -> Display Res
 
 
 ![image](https://user-images.githubusercontent.com/96234810/160625584-f7701e74-cfa5-4e1a-9e0c-848b6f62cd8a.png)
-![image](https://user-images.githubusercontent.com/96234810/162427868-ed1e2e50-cbd2-4af5-a0dc-bdabde8826fa.png)
+![image](https://user-images.githubusercontent.com/96234810/162427951-a0496831-48e0-4124-b3a0-e0e387b75553.png)
+
