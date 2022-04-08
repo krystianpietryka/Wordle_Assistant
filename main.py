@@ -6,7 +6,7 @@ import copy
 import PySimpleGUI as sg
 import Scripts.Wordle_Answers_For_Input as Wordle_Answers_For_Input
 
-# TODO Todo Incorporate some word usage frequency??
+# TODO Incorporate some word usage frequency??
 # TODO Update Readme.md on GitHub
 # TODO arrows shift input field - very important quality of life
 # TODO Go through help page and naming conventions to make it more user friendly
