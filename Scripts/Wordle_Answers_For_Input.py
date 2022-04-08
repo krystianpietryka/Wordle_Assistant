@@ -1,4 +1,5 @@
 import re
+from turtle import pos
 
 def Same_Place_Letters_Check(green, yellow):
     for i in range(len(green)):
@@ -75,7 +76,7 @@ def Display_Possible_Answers(possible_answers, excluded_letters, green_letters_i
             possible_answers.remove(marked_answer)
         except:
             pass
-
+    possible_answers.sort()
     return possible_answers
     
     

@@ -6,7 +6,7 @@ import copy
 import PySimpleGUI as sg
 import Scripts.Wordle_Answers_For_Input as Wordle_Answers_For_Input
 
-#TODO Todo Incorporate some word usage probability??
+#TODO Todo Incorporate some word usage frequency??
 #TODO Update Readme.md on GitHub
 #TODO More Testing
 #TODO arrows shift input field - very important quality of life
@@ -38,9 +38,9 @@ def Intro():
 
 
 # Window for displaying answers, will probably add scrolling in the future
-def Answers():
-    col = [[sg.Text(k='-OUTPUT-', size=(20, 50))]]
-    layout = [[sg.Column(col ,vertical_scroll_only = True, justification = 'center', element_justification = 'center', scrollable=True)]]
+def Answers(amount_of_answers):
+    col = [[sg.Text(k='-OUTPUT-', size=(20, amount_of_answers))]]
+    layout = [[sg.Column(col, expand_x = True, vertical_scroll_only = True, justification = 'center', element_justification = 'center', scrollable=True)]]
     return sg.Window('Possible Answers', layout, location=(550, 0), finalize=True)
 
 def Help():
@@ -112,15 +112,17 @@ def Main():
             same_place_flag = Wordle_Answers_For_Input.Same_Place_Letters_Check(green, yellow)
 
             # Display Results based on valid symbol flag
-            window2 = Answers()
             if valid_symbol_flag == 1:
                 if same_place_flag == 1:
                     result = Wordle_Answers_For_Input.Display_Possible_Answers(possible_answers, values['excluded'].lower(), green.lower(), yellow.lower())
-                    result = 'Num of Answers: ' + str(len(possible_answers)) +'\n\n' + ''.join([str(i) for i in result])
+                    window2 = Answers(len(result) + 2)
+                    result = 'Num of Answers: ' + str(len(result)) +'\n\n' + ''.join([str(i) for i in result])
                     window2['-OUTPUT-'].update(result)
                 else:
+                    window2 = Answers(10)
                     window2['-OUTPUT-'].update('Yellow and Green letters exist at the same index!')
             else:
+                window2 = Answers(10)
                 window2['-OUTPUT-'].update('Invalid Symbol Input!')
         elif event == 'Help' and not window2:
             window2 = Help()
