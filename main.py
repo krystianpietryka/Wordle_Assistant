@@ -8,13 +8,10 @@ import Scripts.Wordle_Answers_For_Input as Wordle_Answers_For_Input
 
 #TODO Todo Incorporate some word usage frequency??
 #TODO Update Readme.md on GitHub
-#TODO More Testing
 #TODO arrows shift input field - very important quality of life
 #TODO Go through help page and naming conventions to make it more user friendly
 #TODO make filter parameters for answer list
-#TODO Cleanup this shitty code
 #TODO Optimize this shitty code
-#TODO Comment this shitty code
 
 sg.theme('DarkGreen')
 
@@ -37,12 +34,13 @@ def Intro():
     return sg.Window('WordleAssistant', layout, finalize=True)
 
 
-# Window for displaying answers, will probably add scrolling in the future
+# Window for displaying answers
 def Answers(amount_of_answers):
     col = [[sg.Text(k='-OUTPUT-', size=(20, amount_of_answers))]]
-    layout = [[sg.Column(col, expand_x = True, vertical_scroll_only = True, justification = 'center', element_justification = 'center', scrollable=True)]]
+    layout = [[sg.Column(col, size = (150, 600), expand_x = True, vertical_scroll_only = True, justification = 'center', element_justification = 'center', scrollable=True)]]
     return sg.Window('Possible Answers', layout, location=(550, 0), finalize=True)
 
+# Help Page
 def Help():
     layout = [[sg.Text(""" Hi! Thank you for using Wordle Assistant!
 
@@ -69,6 +67,7 @@ def Help():
     """)]]
     return sg.Window('Help Page', layout,  finalize=True)
 
+# Page with best starters
 def Best_Starters():
     layout = [[sg.Text("""The best starting guesses (according to a few internet pages) in no particular order are as follows:
     *STARE
@@ -105,10 +104,11 @@ def Main():
         elif event == 'Display Answers' and not window2:
             green = Wordle_Answers_For_Input.Convert_Empty_Letters((values['green1'],values['green2'], values['green3'], values['green4'], values['green5']))
             yellow = Wordle_Answers_For_Input.Convert_Empty_Letters((values['yellow1'], values['yellow2'], values['yellow3'], values['yellow4'], values['yellow5']))
+
             # Valid Symbol Check for green and yellow letters input
             valid_symbol_flag = Wordle_Answers_For_Input.Valid_Symbol_Check(green + yellow)
             
-            #Same Place Letter Check for green and yellow letters input
+            # Same Place Letter Check for green and yellow letters input
             same_place_flag = Wordle_Answers_For_Input.Same_Place_Letters_Check(green, yellow)
 
             # Display Results based on valid symbol flag

@@ -1,18 +1,20 @@
 import re
-from turtle import pos
 
+# checks if values in arguments are the same char at the same index
 def Same_Place_Letters_Check(green, yellow):
     for i in range(len(green)):
         if green[i].isalpha() and yellow[i].isalpha():
             return 0
     return 1
 
+# checks if values in argument are alphabetic
 def Valid_Symbol_Check(combined_inputs):
     for letter in combined_inputs:
         if not (letter == '.' or letter.isalpha()):
             return 0
     return 1
 
+# converts empty letters in string to dots
 def Convert_Empty_Letters(letters):
     result = ''
     for letter in letters:
@@ -22,7 +24,7 @@ def Convert_Empty_Letters(letters):
             result += letter
     return result
         
-#Scripts displays the possible 5 letter answers for given regex pattern
+# Displays the possible 5 letter answers for given regex pattern
 def Display_Possible_Answers(possible_answers, excluded_letters, green_letters_input, yellow_letters):
 
     answers_to_delete = []
@@ -31,7 +33,7 @@ def Display_Possible_Answers(possible_answers, excluded_letters, green_letters_i
     for line in possible_answers:
         search_result = re.search(green_letters_input, line)
         
-        #If search result matches regex, check if excluded letters are contained in the word
+        # If search result matches regex, mark for deletion if excluded letters are contained in the word
         if search_result:
             for letter in line:
                 if letter in excluded_letters:
@@ -39,7 +41,7 @@ def Display_Possible_Answers(possible_answers, excluded_letters, green_letters_i
         else:
             answers_to_delete.append(line)
 
-    # Loop through filtered answers, delete from possible answers if letters do not contain all of the yellow letters
+    # Loop through filtered answers, mark possible answers for deletion if letters do not contain all of the yellow letters
     for answer in possible_answers:
         for letter in yellow_letters:
             if letter != '.':
@@ -63,7 +65,7 @@ def Display_Possible_Answers(possible_answers, excluded_letters, green_letters_i
             if yellow_letters[i] == answer[i]:
                 answers_to_delete.append(answer)
     
-    # Delete wordle answers used in the past
+    # mark for deletion wordle answers used in the past
     with open('Text_Files/past_answers.txt', 'r') as past_answers:
         for past_answer in past_answers:
             if past_answer in possible_answers:
