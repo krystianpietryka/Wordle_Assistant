@@ -11,7 +11,6 @@ import Scripts.Wordle_Answers_For_Input as Wordle_Answers_For_Input
 #TODO More Testing
 #TODO arrows shift input field - very important quality of life
 #TODO Go through help page and naming conventions to make it more user friendly
-#TODO Make display list scrollable
 #TODO make filter parameters for answer list
 #TODO Cleanup this shitty code
 #TODO Optimize this shitty code
@@ -40,7 +39,8 @@ def Intro():
 
 # Window for displaying answers, will probably add scrolling in the future
 def Answers():
-    layout = [[sg.Text(k='-OUTPUT-', size=(20, 50))]]
+    col = [[sg.Text(k='-OUTPUT-', size=(20, 50))]]
+    layout = [[sg.Column(col ,vertical_scroll_only = True, justification = 'center', element_justification = 'center', scrollable=True)]]
     return sg.Window('Possible Answers', layout, location=(550, 0), finalize=True)
 
 def Help():
