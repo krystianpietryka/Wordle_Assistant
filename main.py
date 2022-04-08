@@ -2,22 +2,20 @@
 
 #Script contains GUI for Wordle_Assistant
 
-from ast import Tuple
 import copy
 import PySimpleGUI as sg
 import Scripts.Wordle_Answers_For_Input as Wordle_Answers_For_Input
 
-#Todo Incorporate some word usage probability??
-#Update Readme.md on GitHub
-#More Testing
-#arrows shift input field - very important quality of life
-#Go through help page and naming conventions to make it more user friendly
-#Make display list scrollable
-#make filter parameters for answer list
+#TODO Todo Incorporate some word usage probability??
+#TODO Update Readme.md on GitHub
+#TODO More Testing
+#TODO arrows shift input field - very important quality of life
+#TODO Go through help page and naming conventions to make it more user friendly
+#TODO Make display list scrollable
+#TODO make filter parameters for answer list
 #TODO Cleanup this shitty code
-#Optimize this shitty code
-#Comment this shitty code
-#Incorporate same letter green + yellow in different places as having two of the same letter
+#TODO Optimize this shitty code
+#TODO Comment this shitty code
 
 sg.theme('DarkGreen')
 

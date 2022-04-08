@@ -12,7 +12,6 @@ def Valid_Symbol_Check(combined_inputs):
             return 0
     return 1
 
-# This definetely can be done better
 def Convert_Empty_Letters(letters):
     result = ''
     for letter in letters:
@@ -45,6 +44,17 @@ def Display_Possible_Answers(possible_answers, excluded_letters, green_letters_i
             if letter != '.':
                 if letter not in answer:
                     answers_to_delete.append(answer)
+
+                # If a string contains the same yellow letter and green letter
+                # It must contain 2 of the same letter, so if the answer
+                # does not contain 2 of the same letters, mark it for deletion
+                elif letter in green_letters_input:
+                    count = 0
+                    for answer_letter in answer:
+                        if answer_letter == letter:
+                            count += 1
+                    if count != 2:
+                        answers_to_delete.append(answer)
             
     #Exclude answers with same letter in the same index as yellow letters
     for answer in possible_answers:
