@@ -1,7 +1,7 @@
 
 # Wordle_Assistant
 ## Description
-Wordle Assistant is a script which suggests possible wordle answers for given Green Letters, Yellow Letters and Excluded Letters Input. Users Accepted Wordle List, Excluded Past Wordle Answers from displayed possible answers (Still updating daily as of 03/29/2022)
+Wordle Assistant is a script which suggests possible wordle answers for given Green Letters, Yellow Letters and Excluded Letters Input. Uses Possible Wordle guesses List combined with possible wordle answers list. Excludes Past Wordle Answers from displayed possible answers (Still updating daily as of 04/08/2022)
 ## Installation
 Not required, run __main__.py.\
 Modules needed are in requirements.txt.\
