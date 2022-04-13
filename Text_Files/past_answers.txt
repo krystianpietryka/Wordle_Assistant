@@ -1,5 +1,15 @@
+<<<<<<< HEAD
 could
 natal
+=======
+scare
+foray
+comma
+natal
+shawl
+snout
+lowly
+>>>>>>> 7dea20b31eb9915badf28b9cb1f8fac21fec01d0
 stove
 shall
 found
